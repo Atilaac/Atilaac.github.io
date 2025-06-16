@@ -1,18 +1,9 @@
 # Authors
 
 Name Name:
-  name        : "Name Name"
-  uri         : "http://name.com"
-  email       : "name@name.com"
-  bio         : "This is the first name."
+  name        : "Dr. Achraf Atila"
+  uri         : "http://aatila.com"
+  email       : "achraf.atila@gmail.com"
+  bio         : "I am Achraf. I currently work at the Federal institute of materials research and tersting on atomistics simulations of inorganic glasses. I am a computational material scientist focusing on amorphous materials. I am strongly interested in the relationship between composition, and physical properties of glasses."
   avatar      : "bio-photo-2.jpg"
-  twitter     : "name"
-  google_plus : "Name"
-
-Name2 Name2:
-  name        : "Name2 Name2"
-  email       : "name2@name2.com"
-  bio         : "I ordered what?"
-  avatar      : "bio-photo.jpg"
-  twitter     : "name2"
-  google_plus : "Name"
+  twitter     : "Achraf Atila"
