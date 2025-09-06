@@ -10,5 +10,5 @@ I am Dr. Achraf Atila. Currently, I work at the Bundesanstalt für Materialforsc
 
 Research interests: My research interests lie at the intersection of materials science and physics. Generally, I am interested in using atomistic simulations and data analysis tools to study and understand materials behavior under different conditions.
 
-[GitHub](https://Atilaac.github.com/) 
+[GitHub](https://www.github.com/Atilaac) 
 
