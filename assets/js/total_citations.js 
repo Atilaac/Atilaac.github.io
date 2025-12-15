@@ -1,0 +1,6 @@
+fetch('/google-scholar-stats/gs_data.json')
+  .then(r => r.json())
+  .then(d => {
+    document.querySelectorAll('.show_total_citations')
+      .forEach(e => e.textContent = d.citedby);
+  });

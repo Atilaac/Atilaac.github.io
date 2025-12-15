@@ -35,8 +35,6 @@ author:
   arxiv            : "https://arxiv.org/search/cond-mat?searchtype=author&query=Atila,+A"
   googlescholar    : "https://scholar.google.com/citations?hl=en&user=TTAujLUAAAAJ&view_op=list_works&sortby=pubdate"
   orcid            : "https://orcid.org/0000-0003-4148-5908"
-  semantic         : # URL
-  pubmed           : "https://pubmed.ncbi.nlm.nih.gov/?term=Atila+A&cauthor_id=34251004"
   researchgate     : "https://www.researchgate.net/profile/Achraf-Atila" # URL
   scopus           : "https://www.scopus.com/authid/detail.uri?authorId=57208927177&origin=recordpage" # URL
 
@@ -44,12 +42,7 @@ author:
   github           : "Atilaac"
 
   # Social media
-  instagram        : achraf.atila # Username
   linkedin         : achrafatila # Username
-  twitter          : AchrafAtila # Username for X / Twitter
-  xing             : ACHRAF_ATILA # Username
-  youtube          : # Username
-  zhihu            : # Username
 
 # Publication Category - The following the list of publication categories and their headings
 publication_category:
