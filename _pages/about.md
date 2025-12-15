@@ -8,7 +8,9 @@ redirect_from:
 ---
 I am Dr. Achraf Atila. Currently, I work at the Bundesanstalt für Materialforschung und -prüfung in Berlin on atomistic simulations of inorganic glasses. I am a computational material scientist focusing on amorphous materials. I am strongly interested in the relationship between composition and physical properties of glasses. In addition to my research in material behavior I am also involved in the development of workflows for glass simulations.
 
-Research interests: My research interests lie at the intersection of materials science and physics. Generally, I am interested in using atomistic simulations and data analysis tools to study and understand materials behavior under different conditions.
+Research interests: My research interests lie at the intersection of materials science and physics. Generally, I am interested in using atomistic simulations and data analysis tools to study and understand materials behavior under different conditions. I have published more than 25 papers at the top international journals with total google scholar citations <span class="show_total_citations"></span>.
+
+
 
 
 You can check my [GitHub](https://github.com/Atilaac) for code I wrote or currently working on and [Google scholar](https://scholar.google.com/citations?user=TTAujLUAAAAJ&hl=en) for my full list of papers.
