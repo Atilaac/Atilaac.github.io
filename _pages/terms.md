@@ -1,7 +1,7 @@
 ---
 permalink: /terms/
 title: "Terms and Privacy Policy"
-modified: 2026-01-27
+modified: 2026-03-17
 ---
 
 {% include base_path %}
