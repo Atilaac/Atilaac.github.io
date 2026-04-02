@@ -186,6 +186,7 @@ collections:
   publications:
     output: true
     permalink: /:collection/:path/
+    sort_by: date
   portfolio:
     output: true
     permalink: /:collection/:path/
