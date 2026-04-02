@@ -36,41 +36,65 @@ layout: default
         
         {% if page.collection == 'teaching' %}
           <p> {{ page.type }}, <i>{{ page.venue }}</i>, {{ page.date | default: "1900-01-01" | date: "%Y" }} </p>
+        {% elsif page.collection == 'publications' %}
+          <p class="pub-meta">
+            {% if page.authors %}<span class="pub-authors">{{ page.authors }}</span><br />{% endif %}
+            <i>{{ page.venue }}</i>{% if page.volume %}, vol. {{ page.volume }}{% endif %}{% if page.issue %}, no. {{ page.issue }}{% endif %}{% if page.pages %}, pp. {{ page.pages }}{% endif %}, {{ page.date | default: "1900-01-01" | date: "%Y" }}
+          </p>
         {% elsif page.venue and page.date %}
           <p>Published in <i>{{ page.venue }}</i>, {{ page.date | default: "1900-01-01" | date: "%Y" }} </p>
         {% elsif page.date %}
           <p class="page__date"><strong><i class="fa fa-fw fa-calendar" aria-hidden="true"></i> {{ site.data.ui-text[site.locale].date_label | default: "Published:" }}</strong> <time datetime="{{ page.date | date_to_xmlschema }}">{{ page.date | default: "1900-01-01" | date: "%B %d, %Y" }}</time></p>
-        {% endif %}    
+        {% endif %}
+
+        <!-- Download buttons -->
+        <p class="pub-links" style="margin-top: 0.5em;">
+          {% if page.pdf_local %}
+            <a href="{{ page.pdf_local }}" class="btn btn--primary btn--small"><i class="fa fa-file-pdf" aria-hidden="true"></i> Download PDF</a>
+          {% elsif page.paperurl %}
+            <a href="{{ page.paperurl }}" class="btn btn--primary btn--small"><i class="fa fa-external-link" aria-hidden="true"></i> View Paper</a>
+          {% endif %}
+          {% if page.supplementary_url %}
+            <a href="{{ page.supplementary_url }}" class="btn btn--inverse btn--small"><i class="fa fa-paperclip" aria-hidden="true"></i> Supplementary</a>
+          {% endif %}
+          {% if page.slidesurl %}
+            <a href="{{ page.slidesurl }}" class="btn btn--inverse btn--small"><i class="fa fa-file-powerpoint" aria-hidden="true"></i> Slides</a>
+          {% endif %}
+          {% if page.bibtexurl %}
+            <a href="{{ page.bibtexurl }}" class="btn btn--inverse btn--small"><i class="fa fa-quote-right" aria-hidden="true"></i> BibTeX</a>
+          {% endif %}
+        </p>
         </header>
       {% endunless %}
 
       <section class="page__content" itemprop="text">
+
+        <!-- Plain Language Summary -->
+        {% if page.lay_summary %}
+        <div class="pub-lay-summary" style="background: #f8f9fa; border-left: 4px solid #0078d4; padding: 1em 1.2em; margin-bottom: 1.5em; border-radius: 0 4px 4px 0;">
+          <h3 style="margin-top:0;"><i class="fa fa-comments" aria-hidden="true"></i> Plain Language Summary
+            {% if page.lay_summary_draft %}<span class="label label--warning" style="font-size:0.65em; vertical-align:middle; margin-left:6px;">draft</span>{% endif %}
+          </h3>
+          <p style="margin-bottom:0;">{{ page.lay_summary }}</p>
+        </div>
+        {% endif %}
+
+        <!-- Abstract -->
+        {% if page.abstract and page.collection == 'publications' %}
+        <div class="pub-abstract" style="margin-bottom: 1.5em;">
+          <h3>Abstract</h3>
+          <p>{{ page.abstract }}</p>
+        </div>
+        {% endif %}
+
         {{ content }}
 
-        {% if page.citation and page.paperurl and page.slidesurl and page.bibtexurl %}
-          <p style="font-size: smaller">Recommended citation: {{ page.citation }}<br /><a href="{{ page.paperurl }}">Download Paper</a> | <a href="{{ page.slidesurl }}">Download Slides</a> | <a href="{{ page.bibtexurl }}">Download Bibtex</a></p>
-        {% elsif page.citation and page.paperurl and page.slidesurl %}
-          <p style="font-size: smaller">Recommended citation: {{ page.citation }}<br /><a href="{{ page.paperurl }}">Download Paper</a> | <a href="{{ page.slidesurl }}">Download Slides</a></p>
-        {% elsif page.citation and page.paperurl and page.bibtexurl %}
-          <p style="font-size: smaller">Recommended citation: {{ page.citation }}<br /><a href="{{ page.paperurl }}">Download Paper</a> | <a href="{{ page.bibtexurl }}">Download Bibtex</a></p>
-        {% elsif page.citation and page.paperurl %}
-          <p style="font-size: smaller">Recommended citation: {{ page.citation }}<br /><a href="{{ page.paperurl }}">Download Paper</a></p>
-        {% elsif page.citation and page.slidesurl and page.bibtexurl %}
-          <p style="font-size: smaller">Recommended citation: {{ page.citation }}<br /><a href="{{ page.slidesurl }}">Download Slides</a> | <a href="{{ page.bibtexurl }}">Download Bibtex</a></p>
-        {% elsif page.citation and page.slidesurl %}
-          <p style="font-size: smaller">Recommended citation: {{ page.citation }}<br /><a href="{{ page.slidesurl }}">Download Slides</a></p>
-        {% elsif page.slidesurl and page.bibtexurl %}
-          <p style="font-size: smaller"><a href="{{ page.slidesurl }}">Download Slides</a> | <a href="{{ page.bibtexurl }}">Download Bibtex</a></p>
-        {% elsif page.paperurl and page.bibtexurl %}
-          <p style="font-size: smaller"><a href="{{ page.paperurl }}">Download Paper</a> | <a href="{{ page.bibtexurl }}">Download Bibtex</a></p>
-        {% elsif page.citation and page.bibtexurl %}
-          <p style="font-size: smaller">Recommended citation: {{ page.citation }}<br /><a href="{{ page.bibtexurl }}">Download Bibtex</a></p>
-        {% elsif page.citation %}
-          <p style="font-size: smaller">Recommended citation: {{ page.citation }}</p>
-        {% elsif page.slidesurl %}
-          <p style="font-size: smaller"><a href="{{ page.slidesurl }}">Download Slides</a></p>
-        {% elsif page.bibtexurl %}
-          <p style="font-size: smaller"><a href="{{ page.bibtexurl }}">Download Bibtex</a></p>
+        <!-- Citation -->
+        {% if page.citation %}
+        <div class="pub-citation" style="margin-top: 2em; padding-top: 1em; border-top: 1px solid #eee; font-size: 0.85em; color: #555;">
+          <strong>Recommended citation:</strong> {{ page.citation }}
+          {% if page.paperurl and page.pdf_local == nil %}<br /><a href="{{ page.paperurl }}">DOI / Publisher link</a>{% endif %}
+        </div>
         {% endif %}
 
         {% if page.link %}<div><a href="{{ page.link }}" class="btn">{{ site.data.ui-text[site.locale].ext_link_label | default: "Direct Link" }}</a></div>{% endif %}
