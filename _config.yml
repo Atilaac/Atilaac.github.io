@@ -28,8 +28,7 @@ author:
   bio              : "I am a computational material scientist"
   location         : "Berlin, Germany"
   employer         : "Bundesanstalt für materialforschung und prüfung BAM"
-  uri              : "https://achrafatila.com"
-  paperverdict     : "https://paperverdict.com"
+  uri              : # URL
   email            : "dr.achrafatila@gmail.com" 
 
   # Academic websites
