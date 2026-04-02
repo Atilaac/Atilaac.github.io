@@ -33,56 +33,52 @@
         <a href="{{ base_path }}{{ post.url }}" rel="permalink">{{ title }}</a>
       {% endif %}
     </h2>
-
+    
     {% if post.read_time %}
       <p class="page__meta"><i class="fa fa-clock" aria-hidden="true"></i> {% include read-time.html %}</p>
     {% endif %}
 
-    {% if post.collection == 'teaching' %}
-      <p> {{ post.type }}, <i>{{ post.venue }}</i>, {{ post.date | default: "1900-01-01" | date: "%Y" }} </p>
-    {% elsif post.collection == 'publications' %}
-      <p class="pub-meta">
-        {% if post.authors %}<span class="pub-authors">{{ post.authors }}</span><br />{% endif %}
-        <i>{{ post.venue }}</i>{% if post.volume %}, vol. {{ post.volume }}{% endif %}{% if post.issue %}, no. {{ post.issue }}{% endif %}{% if post.pages %}, pp. {{ post.pages }}{% endif %}, {{ post.date | default: "1900-01-01" | date: "%Y" }}
-      </p>
-    {% elsif post.date %}
-      <p class="page__date"><strong><i class="fa fa-fw fa-calendar" aria-hidden="true"></i> {{ site.data.ui-text[site.locale].date_label | default: "Published:" }}</strong> <time datetime="{{ post.date | default: "1900-01-01" | date_to_xmlschema }}">{{ post.date | default: "1900-01-01" | date: "%B %d, %Y" }}</time></p>
-    {% endif %}
+        {% if post.collection == 'teaching' %}
+          <p> {{ post.type }}, <i>{{ post.venue }}</i>, {{ post.date | default: "1900-01-01" | date: "%Y" }} </p>
+        {% elsif post.collection == 'publications' %}
+          <p>Published in <i>{{ post.venue }}</i>, {{ post.date | default: "1900-01-01" | date: "%Y" }} </p>
+        {% elsif post.date %}
+         <p class="page__date"><strong><i class="fa fa-fw fa-calendar" aria-hidden="true"></i> {{ site.data.ui-text[site.locale].date_label | default: "Published:" }}</strong> <time datetime="{{ post.date | default: "1900-01-01" | date_to_xmlschema }}">{{ post.date | default: "1900-01-01" | date: "%B %d, %Y" }}</time></p>
+        {% endif %}
 
-    {% if post.collection == 'publications' %}
-      {% if post.abstract %}
-        <p class="archive__item-excerpt" itemprop="description">{{ post.abstract | strip_html | truncate: 280 }}</p>
-      {% endif %}
-    {% elsif post.excerpt and site.read_more != 'enabled' %}
-      <p class="archive__item-excerpt" itemprop="description">{{ post.excerpt | markdownify }}</p>
+    {% if post.excerpt and site.read_more != 'enabled' %}
+    <p class="archive__item-excerpt" itemprop="description">{{ post.excerpt | markdownify }}</p>
     {% elsif post.excerpt and site.read_more == 'enabled' %}
-      <p class="archive__item-excerpt" itemprop="description"><p>{{ post.excerpt | markdownify | remove: '<p>' | remove: '</p>' }}<strong><a href="{{ base_path }}{{ post.url }}" rel="permalink"> Read more</a></strong></p></p>
+    <p class="archive__item-excerpt" itemprop="description"><p>{{ post.excerpt | markdownify | remove: '<p>' | remove: '</p>' }}<strong><a href="{{ base_path }}{{ post.url }}" rel="permalink"> Read more</a></strong></p></p>
     {% endif %}
-
-    {% if post.lay_summary %}
-    <div class="pub-lay-summary">
-      <strong><i class="fa fa-comments" aria-hidden="true"></i> In plain words:</strong>
-      {% if post.lay_summary_draft %}<span class="label label--warning" style="font-size:0.7em; vertical-align:middle; margin-left:4px;">draft</span>{% endif %}
-      <p>{{ post.lay_summary }}</p>
-    </div>
+    
+    {% if post.citation and post.paperurl and post.slidesurl and post.bibtexurl %}
+      <p>Recommended citation: {{ post.citation }}<br /><a href="{{ post.paperurl }}">Download Paper</a> | <a href="{{ post.slidesurl }}">Download Slides</a> | <a href="{{ post.bibtexurl }}">Download Bibtex</a></p>
+    {% elsif post.citation and post.paperurl and post.slidesurl %}
+      <p>Recommended citation: {{ post.citation }}<br /><a href="{{ post.paperurl }}">Download Paper</a> | <a href="{{ post.slidesurl }}">Download Slides</a></p>
+    {% elsif post.citation and post.paperurl and post.bibtexurl %}
+      <p>Recommended citation: {{ post.citation }}<br /><a href="{{ post.paperurl }}">Download Paper</a> | <a href="{{ post.bibtexurl }}">Download Bibtex</a></p>
+    {% elsif post.citation and post.paperurl %}
+      <p>Recommended citation: {{ post.citation }}<br /><a href="{{ post.paperurl }}">Download Paper</a></p>
+    {% elsif post.citation and post.slidesurl and post.bibtexurl %}
+      <p>Recommended citation: {{ post.citation }}<br /><a href="{{ post.slidesurl }}">Download Slides</a> | <a href="{{ post.bibtexurl}}">Download Bibtex</a></p>
+    {% elsif post.citation and post.slidesurl %}
+      <p>Recommended citation: {{ post.citation }}<br /><a href="{{ post.slidesurl }}">Download Slides</a></p>
+    {% elsif post.citation and post.bibtexurl %}
+      <p>Recommended citation: {{ post.citation }}<br /><a href="{{ post.bibtexurl }}">Download Bibtex</a></p>
+    {% elsif post.citation %}
+      <p>Recommended citation: {{ post.citation }}</p>
+    {% elsif post.paperurl and post.bibtexurl %}
+      <p><a href=" {{ post.paperurl }} ">Download Paper</a> | <a href="{{ post.bibtexurl }}">Download Bibtex</a></p>
+    {% elsif post.paperurl %}
+      <p><a href=" {{ post.paperurl }} ">Download Paper</a></p>
+    {% elsif post.slidesurl and post.bibtexurl %}
+      <p><a href="{{ post.slidesurl }}">Download Slides</a> | <a href="{{ post.bibtexurl }}">Download Bibtex</a></p>
+    {% elsif post.slidesurl %}
+      <p><a href="{{ post.slidesurl }}">Download Slides</a></p>
+    {% elsif post.bibtexurl %}
+      <p><a href="{{ post.bibtexurl }}">Download Bibtex</a></p>
     {% endif %}
-
-    <p class="pub-links">
-      {% if post.pdf_local %}
-        <a href="{{ post.pdf_local }}" class="btn btn--primary btn--small"><i class="fa fa-file-pdf" aria-hidden="true"></i> PDF</a>
-      {% elsif post.paperurl %}
-        <a href="{{ post.paperurl }}" class="btn btn--primary btn--small"><i class="fa fa-external-link" aria-hidden="true"></i> Paper</a>
-      {% endif %}
-      {% if post.supplementary_url %}
-        <a href="{{ post.supplementary_url }}" class="btn btn--inverse btn--small"><i class="fa fa-paperclip" aria-hidden="true"></i> Supplementary</a>
-      {% endif %}
-      {% if post.slidesurl %}
-        <a href="{{ post.slidesurl }}" class="btn btn--inverse btn--small"><i class="fa fa-file-powerpoint" aria-hidden="true"></i> Slides</a>
-      {% endif %}
-      {% if post.bibtexurl %}
-        <a href="{{ post.bibtexurl }}" class="btn btn--inverse btn--small"><i class="fa fa-quote-right" aria-hidden="true"></i> BibTeX</a>
-      {% endif %}
-    </p>
 
   </article>
 </div>
