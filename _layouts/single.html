@@ -73,6 +73,18 @@ layout: default
           <p style="font-size: smaller"><a href="{{ page.bibtexurl }}">Download Bibtex</a></p>
         {% endif %}
 
+        {% if page.pdf_local %}
+          <p><a href="{{ page.pdf_local }}" class="btn btn--primary">Download Local PDF</a></p>
+        {% endif %}
+
+        {% if page.lay_summary_en or page.lay_summary or page.lay_summary_ar or page.lay_summary_fr or page.lay_summary_de %}
+          <h2>Plain Language Summary</h2>
+          {% if page.lay_summary_en %}<p lang="en"><strong>🇬🇧 English</strong><br>{{ page.lay_summary_en }}</p>{% elsif page.lay_summary %}<p>{{ page.lay_summary }}</p>{% endif %}
+          {% if page.lay_summary_ar %}<p lang="ar" dir="rtl" style="text-align:right;font-family:serif;"><strong>🇸🇦 العربية</strong><br>{{ page.lay_summary_ar }}</p>{% endif %}
+          {% if page.lay_summary_fr %}<p lang="fr"><strong>🇫🇷 Français</strong><br>{{ page.lay_summary_fr }}</p>{% endif %}
+          {% if page.lay_summary_de %}<p lang="de"><strong>🇩🇪 Deutsch</strong><br>{{ page.lay_summary_de }}</p>{% endif %}
+        {% endif %}
+
         {% if page.link %}<div><a href="{{ page.link }}" class="btn">{{ site.data.ui-text[site.locale].ext_link_label | default: "Direct Link" }}</a></div>{% endif %}
       </section>
 
