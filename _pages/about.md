@@ -15,6 +15,8 @@ Research interests: My research interests lie at the intersection of materials s
 
 
 
+I contribute open-source tools to the atomistic simulation community. [**atomex**](https://github.com/Atilaac/atomex) is a Python package I develop and maintain for analyzing MD simulation. [**amorphouspy**]() is a framework I lead for end-to-end computational glass science workflows — from structure generation and melt-quench simulations to property calculation — developed in collaboration with Schott AG and the Max-Planck-Institute for Sustainable Material. More details on the [Software](/portfolio/) page.
+
 You can check my [GitHub](https://github.com/Atilaac) for code I wrote or currently working on and [Google scholar](https://scholar.google.com/citations?user=TTAujLUAAAAJ&hl=en) for my full list of papers.
 
 

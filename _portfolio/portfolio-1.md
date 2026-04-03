@@ -1,7 +1,38 @@
 ---
-title: "Portfolio item number 1"
-excerpt: "Short description of portfolio item number 1<br/><img src='/images/500x300.png'>"
+title: "atomex"
+excerpt: "Python package for analyzing atomistic simulation and experimental data"
 collection: portfolio
 ---
 
-This is an item in your portfolio. It can be have images or nice text. If you name the file .md, it will be parsed as markdown. If you name the file .html, it will be parsed as HTML. 
+**atomex** is an open-source Python package providing a unified interface for analyzing data from molecular dynamics simulations and experimental techniques. To be shared publicly soon.
+
+**Role:** Sole developer and maintainer
+
+**Install:** `pip install atomex`  
+**GitHub:** [github.com/Atilaac/atomex](https://github.com/Atilaac/atomex)
+
+
+---
+
+### Key Features
+
+- to be announced later
+
+---
+
+### Quick Start
+
+```python
+from ase.io import read
+from atomex.simulations import compute_rdf
+
+frames = read("trajectory.xyz", index=":")
+r, rdfs, cn = compute_rdf(frames, r_max=8.0)
+
+# g(r) for Si–O pairs
+g_SiO = rdfs[(8, 14)]
+```
+
+---
+
+**Requirements:** Python ≥ 3.12 | **License:** BSD 3-Clause

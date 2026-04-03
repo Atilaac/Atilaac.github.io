@@ -80,5 +80,19 @@
       <p><a href="{{ post.bibtexurl }}">Download Bibtex</a></p>
     {% endif %}
 
+    {% if post.pdf_local %}
+      <p><a href="{{ post.pdf_local }}">Download Local PDF</a></p>
+    {% endif %}
+
+    {% if post.lay_summary_en or post.lay_summary or post.lay_summary_ar or post.lay_summary_fr or post.lay_summary_de %}
+      <details>
+        <summary><strong>Plain Language Summary</strong></summary>
+        {% if post.lay_summary_en %}<p lang="en"><strong>🇬🇧 English</strong><br>{{ post.lay_summary_en }}</p>{% elsif post.lay_summary %}<p>{{ post.lay_summary }}</p>{% endif %}
+        {% if post.lay_summary_ar %}<p lang="ar" dir="rtl" style="text-align:right;font-family:serif;"><strong>🇸🇦 العربية</strong><br>{{ post.lay_summary_ar }}</p>{% endif %}
+        {% if post.lay_summary_fr %}<p lang="fr"><strong>🇫🇷 Français</strong><br>{{ post.lay_summary_fr }}</p>{% endif %}
+        {% if post.lay_summary_de %}<p lang="de"><strong>🇩🇪 Deutsch</strong><br>{{ post.lay_summary_de }}</p>{% endif %}
+      </details>
+    {% endif %}
+
   </article>
 </div>

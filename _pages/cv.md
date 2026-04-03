@@ -39,6 +39,11 @@ Work experience
   * I contributed to side projects on the mechanisms of dislocation motion in Laves phases, bioactivity in oxide glasses, and some other topics related to glasses.
   * Participated as a teaching assistant in lectures by leading tutorial sessions and pre-courses on Linux and atomistic simulations
   
+Software
+======
+* [**atomex**](https://github.com/Atilaac/atomex) — Python package for analyzing atomistic simulation and experimental data. Features include radial distribution functions, vibrational density of states, ring statistics, persistent homology, and coordination analysis. Sole developer and maintainer. `pip install atomex`
+* [**amorphouspy**](https://github.com/achrafatila/amorphouspy) — End-to-end workflows for computational glass science, covering structure generation, melt-quench simulations with LAMMPS, and property calculation (elastic moduli, viscosity, CTE). Lead developer; collaboration with BAM, Schott AG, and MPIE.
+
 Publications
 ======
   <ul>{% for post in site.publications reversed %}
