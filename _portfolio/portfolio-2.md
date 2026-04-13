@@ -28,7 +28,7 @@ collection: portfolio
 
 ```bash
 curl -fsSL https://pixi.sh/install.sh | bash  # install pixi
-git clone https://github.com/achrafatila/amorphouspy.git
+git clone https://github.com/glasagent/amorphouspy.git
 cd amorphouspy && pixi install
 ```
 
