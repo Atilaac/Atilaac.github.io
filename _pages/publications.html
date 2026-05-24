@@ -9,7 +9,7 @@ author_profile: true
   <div class="wordwrap">You can also find my articles on <a href="{{site.author.googlescholar}}">my Google Scholar profile</a>.</div>
 {% endif %}
 
-{% if site.data.scholar_metrics.citations > 0 %}
+{% if site.data.scholar_metrics %}
 <div class="scholar-metrics" style="margin: 1em 0; display: flex; gap: 2em;">
   <div><i class="ai ai-google-scholar ai-fw" aria-hidden="true"></i> <strong>{{ site.data.scholar_metrics.citations }}</strong> citations</div>
   <div><i class="fas fa-chart-bar" aria-hidden="true"></i> h-index: <strong>{{ site.data.scholar_metrics.h_index }}</strong></div>
