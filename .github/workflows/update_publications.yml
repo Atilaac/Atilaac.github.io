@@ -19,7 +19,7 @@ jobs:
           python-version: '3.11'
 
       - name: Install dependencies
-        run: pip install scholarly anthropic python-dotenv pyyaml
+        run: pip install scholarly anthropic python-dotenv pyyaml jsonpickle
 
       - name: Fetch Scholar data and metrics
         env:
