@@ -20,3 +20,4 @@ vendor/
 **/.DS_Store
 _data/.DS_Store
 .env
+google_scholar_crawler/update_citation.bsh
