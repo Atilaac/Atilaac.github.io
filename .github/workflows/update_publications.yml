@@ -24,7 +24,6 @@ jobs:
       - name: Fetch Scholar data and metrics
         env:
           GOOGLE_SCHOLAR_ID: ${{ secrets.GOOGLE_SCHOLAR_ID }}
-          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
         run: |
           cd google_scholar_crawler
           python main.py
