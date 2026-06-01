@@ -17,7 +17,9 @@ Education
 
 Work experience
 ======
-* Jan 2025 - : Postdoctoral scientist @ Federal Institute for Materials Research and Testing (BAM)
+* Jan 2025 - : Staff scientist @ Federal Institute for Materials Research and Testing (BAM)
+
+* Jan 2025 - June 2026: Postdoctoral scientist @ Federal Institute for Materials Research and Testing (BAM)
   * Design automated workflows for various atomistic simulations
   * Develop analysis tools for interpreting atomistic simulation data
   * Conduct simulations to investigate the mechanisms behind intermittent aging in glasses
