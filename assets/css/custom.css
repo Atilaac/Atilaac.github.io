@@ -251,6 +251,43 @@ html[data-theme="dark"] .pub-lay-summary {
 /* ----------------------------------------------------------
    7. SIDEBAR
    ---------------------------------------------------------- */
+
+#main {
+  width: 90%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+@media (min-width: 57.8125em) {
+  .sidebar {
+    width: 19%;
+    float: left;
+    margin-right: 1.6949152542%;
+    opacity: 1;
+    -webkit-transition: opacity 0.2s ease-in-out;
+    transition: opacity 0.2s ease-in-out;
+  }
+}
+
+@media (min-width: 57.8125em) {
+  .archive {
+    width: 79%;
+    float: right;
+    margin-right: 0;
+    padding-left: 4.2372881356%;
+  }
+}
+
+@media (min-width: 57.8125em) {
+  .page {
+    width: 79%;
+    float: right;
+    margin-right: 0;
+    padding-left: 4.2372881356%;
+    padding-right: 0;
+  }
+}
+
 .sidebar .author__name {
   font-family: 'Sora', sans-serif;
   font-size: 1rem;
@@ -272,6 +309,9 @@ html[data-theme="dark"] .pub-lay-summary {
 }
 .sidebar .author__urls a:hover {
   color: var(--accent) !important;
+}
+.author__urls li {
+  white-space: normal;
 }
 
 /* ----------------------------------------------------------
