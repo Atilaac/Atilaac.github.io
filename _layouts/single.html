@@ -37,52 +37,36 @@ layout: default
         {% if page.collection == 'teaching' %}
           <p> {{ page.type }}, <i>{{ page.venue }}</i>, {{ page.date | default: "1900-01-01" | date: "%Y" }} </p>
         {% elsif page.venue and page.date %}
-          <p>Published in <i>{{ page.venue }}</i>, {{ page.date | default: "1900-01-01" | date: "%Y" }} </p>
+          {% if page.venue == "Submitted" %}
+            <p><span class="badge badge--submitted">Under Review</span> Submitted {{ page.date | default: "1900-01-01" | date: "%B %Y" }}</p>
+          {% else %}
+            <p>Published in <i>{{ page.venue }}</i>, {{ page.date | default: "1900-01-01" | date: "%Y" }}</p>
+          {% endif %}
         {% elsif page.date %}
           <p class="page__date"><strong><i class="fa fa-fw fa-calendar" aria-hidden="true"></i> {{ site.data.ui-text[site.locale].date_label | default: "Published:" }}</strong> <time datetime="{{ page.date | date_to_xmlschema }}">{{ page.date | default: "1900-01-01" | date: "%B %d, %Y" }}</time></p>
-        {% endif %}    
+        {% endif %}
         </header>
       {% endunless %}
 
       <section class="page__content" itemprop="text">
         {{ content }}
 
-        {% if page.citation and page.paperurl and page.slidesurl and page.bibtexurl %}
-          <p style="font-size: smaller">Recommended citation: {{ page.citation }}<br /><a href="{{ page.paperurl }}">Download Paper</a> | <a href="{{ page.slidesurl }}">Download Slides</a> | <a href="{{ page.bibtexurl }}">Download Bibtex</a></p>
-        {% elsif page.citation and page.paperurl and page.slidesurl %}
-          <p style="font-size: smaller">Recommended citation: {{ page.citation }}<br /><a href="{{ page.paperurl }}">Download Paper</a> | <a href="{{ page.slidesurl }}">Download Slides</a></p>
-        {% elsif page.citation and page.paperurl and page.bibtexurl %}
-          <p style="font-size: smaller">Recommended citation: {{ page.citation }}<br /><a href="{{ page.paperurl }}">Download Paper</a> | <a href="{{ page.bibtexurl }}">Download Bibtex</a></p>
-        {% elsif page.citation and page.paperurl %}
-          <p style="font-size: smaller">Recommended citation: {{ page.citation }}<br /><a href="{{ page.paperurl }}">Download Paper</a></p>
-        {% elsif page.citation and page.slidesurl and page.bibtexurl %}
-          <p style="font-size: smaller">Recommended citation: {{ page.citation }}<br /><a href="{{ page.slidesurl }}">Download Slides</a> | <a href="{{ page.bibtexurl }}">Download Bibtex</a></p>
-        {% elsif page.citation and page.slidesurl %}
-          <p style="font-size: smaller">Recommended citation: {{ page.citation }}<br /><a href="{{ page.slidesurl }}">Download Slides</a></p>
-        {% elsif page.slidesurl and page.bibtexurl %}
-          <p style="font-size: smaller"><a href="{{ page.slidesurl }}">Download Slides</a> | <a href="{{ page.bibtexurl }}">Download Bibtex</a></p>
-        {% elsif page.paperurl and page.bibtexurl %}
-          <p style="font-size: smaller"><a href="{{ page.paperurl }}">Download Paper</a> | <a href="{{ page.bibtexurl }}">Download Bibtex</a></p>
-        {% elsif page.citation and page.bibtexurl %}
-          <p style="font-size: smaller">Recommended citation: {{ page.citation }}<br /><a href="{{ page.bibtexurl }}">Download Bibtex</a></p>
-        {% elsif page.citation %}
-          <p style="font-size: smaller">Recommended citation: {{ page.citation }}</p>
-        {% elsif page.slidesurl %}
-          <p style="font-size: smaller"><a href="{{ page.slidesurl }}">Download Slides</a></p>
-        {% elsif page.bibtexurl %}
-          <p style="font-size: smaller"><a href="{{ page.bibtexurl }}">Download Bibtex</a></p>
+        {% if page.citation %}
+          <p style="font-size:0.82rem;color:var(--text-muted);">{{ page.citation | replace: "Achraf Atila", "<strong><u>Achraf Atila</u></strong>" }}</p>
         {% endif %}
-
-        {% if page.pdf_local %}
-          <p><a href="{{ page.pdf_local }}" class="btn btn--primary">Download Local PDF</a></p>
-        {% endif %}
+        <div class="pub-links">
+          {% if page.paperurl %}<a href="{{ page.paperurl }}" class="btn btn--inverse"><i class="fas fa-external-link-alt"></i> Paper</a>{% endif %}
+          {% if page.slidesurl %}<a href="{{ page.slidesurl }}" class="btn btn--inverse"><i class="fas fa-file-powerpoint"></i> Slides</a>{% endif %}
+          {% if page.bibtexurl %}<a href="{{ page.bibtexurl }}" class="btn btn--inverse"><i class="fas fa-quote-right"></i> BibTeX</a>{% endif %}
+          {% if page.pdf_local %}<a href="{{ page.pdf_local }}" class="btn btn--primary"><i class="fas fa-file-pdf"></i> PDF</a>{% endif %}
+        </div>
 
         {% if page.lay_summary_en or page.lay_summary or page.lay_summary_ar or page.lay_summary_fr or page.lay_summary_de %}
           <h2>Plain Language Summary</h2>
-          {% if page.lay_summary_en %}<p lang="en"><strong>🇬🇧 English</strong><br>{{ page.lay_summary_en }}</p>{% elsif page.lay_summary %}<p>{{ page.lay_summary }}</p>{% endif %}
-          {% if page.lay_summary_ar %}<p lang="ar" dir="rtl" style="text-align:right;font-family:serif;"><strong>🇲🇦 العربية</strong><br>{{ page.lay_summary_ar }}</p>{% endif %}
-          {% if page.lay_summary_fr %}<p lang="fr"><strong>🇫🇷 Français</strong><br>{{ page.lay_summary_fr }}</p>{% endif %}
-          {% if page.lay_summary_de %}<p lang="de"><strong>🇩🇪 Deutsch</strong><br>{{ page.lay_summary_de }}</p>{% endif %}
+          {% if page.lay_summary_en %}<div class="pub-lay-summary"><p lang="en"><strong>🇬🇧 English</strong><br>{{ page.lay_summary_en }}</p></div>{% elsif page.lay_summary %}<div class="pub-lay-summary"><p>{{ page.lay_summary }}</p></div>{% endif %}
+          {% if page.lay_summary_ar %}<div class="pub-lay-summary"><p lang="ar" dir="rtl" style="text-align:right;font-family:serif;"><strong>🇲🇦 العربية</strong><br>{{ page.lay_summary_ar }}</p></div>{% endif %}
+          {% if page.lay_summary_fr %}<div class="pub-lay-summary"><p lang="fr"><strong>🇫🇷 Français</strong><br>{{ page.lay_summary_fr }}</p></div>{% endif %}
+          {% if page.lay_summary_de %}<div class="pub-lay-summary"><p lang="de"><strong>🇩🇪 Deutsch</strong><br>{{ page.lay_summary_de }}</p></div>{% endif %}
         {% endif %}
 
         {% if page.link %}<div><a href="{{ page.link }}" class="btn">{{ site.data.ui-text[site.locale].ext_link_label | default: "Direct Link" }}</a></div>{% endif %}

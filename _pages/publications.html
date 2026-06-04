@@ -10,11 +10,11 @@ author_profile: true
 {% endif %}
 
 {% if site.data.scholar_metrics %}
-<div class="scholar-metrics" style="margin: 1em 0; display: flex; gap: 2em;">
+<div class="scholar-metrics">
   <div><i class="ai ai-google-scholar ai-fw" aria-hidden="true"></i> <strong>{{ site.data.scholar_metrics.citations }}</strong> citations</div>
   <div><i class="fas fa-chart-bar" aria-hidden="true"></i> h-index: <strong>{{ site.data.scholar_metrics.h_index }}</strong></div>
   <div><i class="fas fa-chart-line" aria-hidden="true"></i> i10-index: <strong>{{ site.data.scholar_metrics.i10_index }}</strong></div>
-  <div style="color: #888; font-size: 0.85em; align-self: center;">updated {{ site.data.scholar_metrics.last_updated }}</div>
+  <span class="metrics-updated">updated {{ site.data.scholar_metrics.last_updated }}</span>
 </div>
 {% endif %}
 
@@ -22,14 +22,14 @@ author_profile: true
 
 <!-- New style rendering if publication categories are defined -->
 {% if site.publication_category %}
-  {% for category in site.publication_category  %}
+  {% for category in site.publication_category %}
     {% assign title_shown = false %}
     {% for post in site.publications reversed %}
       {% if post.category != category[0] %}
         {% continue %}
       {% endif %}
       {% unless title_shown %}
-        <h2>{{ category[1].title }}</h2><hr />
+        <div class="pub-category-heading"><h2>{{ category[1].title }}</h2></div>
         {% assign title_shown = true %}
       {% endunless %}
       {% include archive-single.html %}
@@ -40,6 +40,3 @@ author_profile: true
     {% include archive-single.html %}
   {% endfor %}
 {% endif %}
-
-
-

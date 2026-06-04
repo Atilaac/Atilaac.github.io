@@ -326,7 +326,249 @@ html[data-theme="dark"] .pub-lay-summary {
 .list__item:nth-child(10) .archive__item { animation-delay: 0.30s; }
 
 /* ----------------------------------------------------------
-   10. DARK MODE — global overrides
+   10. ABOUT PAGE — research tags, software cards, news cards
+   ---------------------------------------------------------- */
+
+/* Research interest tags */
+.research-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+  margin: 1rem 0 1.25rem;
+}
+.research-tags .tag {
+  background: var(--accent-light);
+  color: var(--accent);
+  border: 1px solid rgba(67,97,238,.2);
+  border-radius: 999px;
+  font-size: 0.78rem;
+  font-weight: 500;
+  padding: 0.2rem 0.75rem;
+  white-space: nowrap;
+}
+html[data-theme="dark"] .research-tags .tag {
+  background: var(--accent-light);
+  border-color: rgba(107,140,255,.25);
+}
+
+/* Software cards */
+.software-cards {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  margin: 1rem 0 1.5rem;
+}
+@media (max-width: 600px) {
+  .software-cards { grid-template-columns: 1fr; }
+}
+.software-card {
+  display: flex;
+  gap: 0.85rem;
+  background: var(--bg-secondary);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: 1rem 1.1rem;
+  transition: box-shadow var(--transition), border-color var(--transition);
+}
+.software-card:hover {
+  box-shadow: var(--shadow-md);
+  border-color: #c7d0f8;
+}
+html[data-theme="dark"] .software-card:hover { border-color: #3451d1; }
+.software-card__icon {
+  font-size: 1.6rem;
+  line-height: 1;
+  flex-shrink: 0;
+  margin-top: 0.1rem;
+}
+.software-card__title {
+  font-family: 'Sora', sans-serif;
+  font-weight: 700;
+  font-size: 0.95rem;
+  color: var(--text-primary) !important;
+  text-decoration: none !important;
+  display: block;
+  margin-bottom: 0.3rem;
+}
+.software-card__desc {
+  font-size: 0.82rem;
+  color: var(--text-secondary);
+  line-height: 1.6;
+  margin: 0 0 0.5rem;
+}
+.software-card__link {
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--accent) !important;
+  text-decoration: none !important;
+}
+.software-card__link:hover { text-decoration: underline !important; }
+
+/* News cards */
+.news-cards {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.75rem;
+  margin: 0.75rem 0 1.25rem;
+}
+@media (max-width: 600px) {
+  .news-cards { grid-template-columns: 1fr; }
+}
+.news-card {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  background: var(--bg-secondary);
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--accent);
+  border-radius: var(--radius-md);
+  padding: 0.8rem 1rem;
+  text-decoration: none !important;
+  transition: box-shadow var(--transition), border-color var(--transition);
+}
+.news-card:hover {
+  box-shadow: var(--shadow-md);
+  border-color: #c7d0f8;
+  border-left-color: var(--accent-dark);
+}
+.news-card__source {
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: var(--accent);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+.news-card__headline {
+  font-size: 0.84rem;
+  color: var(--text-primary);
+  line-height: 1.5;
+}
+
+/* ----------------------------------------------------------
+   11. PUBLICATIONS — badges, metrics, category headings
+   ---------------------------------------------------------- */
+
+/* "Under Review" badge */
+.badge {
+  display: inline-block;
+  border-radius: 999px;
+  font-size: 0.68rem;
+  font-weight: 600;
+  padding: 0.12rem 0.55rem;
+  vertical-align: middle;
+  margin-right: 0.4rem;
+  line-height: 1.6;
+}
+.badge--submitted {
+  background: #fef3c7;
+  color: #92400e;
+  border: 1px solid #fde68a;
+}
+html[data-theme="dark"] .badge--submitted {
+  background: #2d1f00;
+  color: #fbbf24;
+  border-color: #78350f;
+}
+
+/* Corresponding author indicator */
+.corresponding-badge {
+  display: inline-block;
+  font-size: 2rem;
+  color: var(--accent);
+  margin-left: 0.35rem;
+  vertical-align: middle;
+}
+
+/* Scholar metrics bar */
+.scholar-metrics {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  align-items: center;
+  background: var(--bg-secondary);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: 0.75rem 1.25rem;
+  margin: 1rem 0 1.5rem;
+  font-size: 0.875rem;
+}
+.scholar-metrics strong { color: var(--text-primary); font-size: 1rem; }
+.scholar-metrics .metrics-updated {
+  color: var(--text-muted);
+  font-size: 0.78rem;
+  margin-left: auto;
+}
+html[data-theme="dark"] .scholar-metrics { background: var(--bg-secondary); }
+
+/* Category section headings */
+.pub-category-heading {
+  background: var(--bg-secondary);
+  border-left: 3px solid var(--accent);
+  border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+  padding: 0.5rem 1rem;
+  margin: 2rem 0 1rem;
+}
+.pub-category-heading h2 {
+  margin: 0;
+  font-size: 1rem;
+  border-bottom: none !important;
+  padding-bottom: 0 !important;
+  color: var(--text-primary);
+}
+
+/* ----------------------------------------------------------
+   12. NAVIGATION — active page indicator
+   ---------------------------------------------------------- */
+.masthead__menu-item.active > a,
+.greedy-nav .active > a {
+  color: var(--accent) !important;
+  border-bottom: 2px solid var(--accent);
+  padding-bottom: 2px;
+}
+
+/* ----------------------------------------------------------
+   14. CV PAGE — section styling and timeline
+   ---------------------------------------------------------- */
+
+/* CV section headings (h1 from ====== syntax on cv.md) */
+.page__content h1 {
+  font-size: 1.05rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  color: var(--accent);
+  border-left: 3px solid var(--accent);
+  padding: 0.35rem 0.75rem;
+  background: var(--accent-light);
+  border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+  margin-top: 2.25rem;
+  margin-bottom: 1rem;
+}
+html[data-theme="dark"] .page__content h1 {
+  background: var(--accent-light);
+}
+
+/* CV list items — add subtle left-border timeline feel */
+.page__content > ul > li,
+.page__content > ul > li > ul > li {
+  position: relative;
+  padding-left: 0.25rem;
+  border-left: none;
+  margin-bottom: 0.6rem;
+}
+
+/* Work/education entry bullets styled as timeline dots */
+.page__content > ul > li::marker {
+  color: var(--accent);
+}
+
+/* Software list: give each item a compact card look */
+.page__content ul li a strong {
+  color: var(--text-primary);
+}
+
+/* ----------------------------------------------------------
+   15. DARK MODE — global overrides
    ---------------------------------------------------------- */
 html[data-theme="dark"] body {
   background-color: var(--bg-primary);
