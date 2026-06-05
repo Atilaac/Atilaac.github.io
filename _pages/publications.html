@@ -23,20 +23,25 @@ author_profile: true
 <!-- New style rendering if publication categories are defined -->
 {% if site.publication_category %}
   {% for category in site.publication_category %}
-    {% assign title_shown = false %}
-    {% for post in site.publications reversed %}
-      {% if post.category != category[0] %}
-        {% continue %}
-      {% endif %}
-      {% unless title_shown %}
-        <div class="pub-category-heading"><h2>{{ category[1].title }}</h2></div>
-        {% assign title_shown = true %}
-      {% endunless %}
-      {% include archive-single.html %}
+    {% assign cat_posts = site.publications | where: "category", category[0] | sort: "date" %}
+    {% assign cat_total = cat_posts | size %}
+    {% if cat_total == 0 %}{% continue %}{% endif %}
+    <div class="pub-category-heading"><h2>{{ category[1].title }}</h2></div>
+    {% for post in cat_posts reversed %}
+      {% assign pub_number = forloop.rindex %}
+      <div style="display:flex;align-items:flex-start;gap:0.75rem;">
+        <span class="pub-number">[{{ pub_number }}]</span>
+        <div style="flex:1;">{% include archive-single.html %}</div>
+      </div>
     {% endfor %}
   {% endfor %}
 {% else %}
-  {% for post in site.publications reversed %}
-    {% include archive-single.html %}
+  {% assign all_posts = site.publications | sort: "date" %}
+  {% for post in all_posts reversed %}
+    {% assign pub_number = forloop.rindex %}
+    <div style="display:flex;align-items:flex-start;gap:0.75rem;">
+      <span class="pub-number">[{{ pub_number }}]</span>
+      <div style="flex:1;">{% include archive-single.html %}</div>
+    </div>
   {% endfor %}
 {% endif %}
