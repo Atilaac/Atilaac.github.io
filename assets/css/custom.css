@@ -618,3 +618,13 @@ html[data-theme="dark"] .page__content,
 html[data-theme="dark"] .page__inner-wrap {
   background: var(--bg-primary);
 }
+
+/* Publication numbers */
+.pub-number {
+  font-weight: 600;
+  color: var(--text-muted);
+  font-size: 0.95rem;
+  min-width: 2rem;
+  padding-top: 0.15rem;
+  flex-shrink: 0;
+}
