@@ -26,7 +26,21 @@ author_profile: true
     {% assign cat_posts = site.publications | where: "category", category[0] | sort: "date" %}
     {% assign cat_total = cat_posts | size %}
     {% if cat_total == 0 %}{% continue %}{% endif %}
-    <div class="pub-category-heading"><h2>{{ category[1].title }}</h2></div>
+    {% comment %} Quick-jump shortcuts to the other (non-empty) sections {% endcomment %}
+    {% capture jump_links %}
+      {% for other in site.publication_category %}
+        {% if other[0] != category[0] %}
+          {% assign other_posts = site.publications | where: "category", other[0] %}
+          {% if other_posts.size > 0 %}<a class="pub-shortcut" href="#{{ other[0] | slugify }}">{{ other[1].title }}</a>{% endif %}
+        {% endif %}
+      {% endfor %}
+    {% endcapture %}
+    {% if jump_links contains "pub-shortcut" %}
+    <nav class="pub-shortcuts" aria-label="Jump to other publication sections">
+      <span class="pub-shortcuts__label">Jump to:</span>{{ jump_links }}
+    </nav>
+    {% endif %}
+    <div class="pub-category-heading" id="{{ category[0] | slugify }}"><h2>{{ category[1].title }}</h2></div>
     {% for post in cat_posts reversed %}
       {% assign pub_number = forloop.rindex %}
       <div style="display:flex;align-items:flex-start;gap:0.75rem;">
