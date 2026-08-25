@@ -1,37 +1,43 @@
 ---
-title: "amorphouspy"
-excerpt: "End-to-end workflows for computational glass science — from structure generation and melt-quench simulations to property calculation and structural analysis."
+title: "journalfig"
+excerpt: "Publication-ready matplotlib themes for twelve scientific publishers — exact column widths, compliant fonts, one string to retarget a figure."
 collection: portfolio
 ---
 
-**amorphouspy** is an open-source Python framework providing end-to-end workflows for atomistic simulations of oxide glasses. It covers the full pipeline from generating initial structural models through running molecular dynamics simulations with LAMMPS to computing material properties and performing detailed structural analysis.
+**journalfig** is an open-source matplotlib theme package for **Nature**, **APS** (PRB/PRL), **Elsevier** (Acta Materialia, JNCS), **IOP**, **AIP**, **ACS**, **RSC**, **IEEE**, **PLOS**, **Wiley**, **PNAS**, and **Science**. Import once, then retarget a figure to a different journal by changing one string. Every number in the themes is traceable to a publisher document, with the six derived values marked as such.
 
-**Role:** Lead developer  
-**Collaborators:** BAM (Berlin), Schott AG, Max-Planck-Institute for Sustainable Materials (MPISsusMat)  
-**GitHub:** TBD 
+**Role:** Sole developer and maintainer
+
+**Install:** `pip install journalfig`  
+**GitHub:** [github.com/Atilaac/journalfig](https://github.com/Atilaac/journalfig)  
+**Documentation:** [aatila.com/journalfig](https://aatila.com/journalfig/)
 
 ---
 
 ### Key Features
 
-- **Structure Generation** — create random oxide glass structures from composition dicts (e.g., `{"SiO2": 75, "Na2O": 15, "CaO": 10}`) with automatic density estimation via Fluegel's empirical model
-- **Interatomic Potentials** — built-in support for PMMCS (Pedone), BJP (Bouhadja), and SHIK (Sundararaman) force fields with automatic LAMMPS input generation
-- **Melt-Quench Simulations** — multi-stage heating/cooling protocols with potential-specific temperature programs
-- **Structural Analysis** — RDFs, coordination numbers, Qₙ distributions, bond angle distributions, ring statistics, cavity analysis
-- **Property Calculation** — elastic moduli (stress-strain finite differences), viscosity (Green-Kubo), coefficient of thermal expansion (NPT fluctuations)
-- **Visualization** — interactive Plotly-based plotting of all structural analysis results
-- **REST API** — FastAPI-based service with MCP integration for workflow automation
+- **Twelve publisher themes** — column widths, fonts, base sizes, panel-label style and raster dpi taken from each publisher's own author guide
+- **Exact figure sizes** — `jf.subplots` / `jf.figure` pin the requested width in millimetres, bypassing the backend rounding and `bbox="tight"` cropping that quietly break it
+- **Compliance checking** — `jf.check(fig)` reports font substitutions, text below the publisher minimum, thin lines and un-rasterized vector artists before submission
+- **Multi-panel layouts** — `jf.mosaic` and `jf.gridspec` for panels of unequal size, with `jf.panel_labels` lettering them in reading order
+- **One call to save** — `jf.save` writes PDF + SVG + PNG (TIFF and EPS on request) and warns when nothing written is a format the publisher accepts as final artwork
+- **Accessible colours** — Okabe–Ito palette paired with line styles, identical across themes, so retargeting never changes colours and figures survive greyscale printing
 
 ---
 
-### Install
+### Quick Start
 
-```bash
-curl -fsSL https://pixi.sh/install.sh | bash  # install pixi
-git clone https://github.com/glasagent/amorphouspy.git
-cd amorphouspy && pixi install
+```python
+import journalfig as jf
+
+jf.use("elsevier")                                   # or "nature", "aps", "PRB", "Acta Materialia"
+fig, ax = jf.subplots("elsevier", width="single")    # exact 90 mm, no figsize boilerplate
+ax.plot(q, sq, label=r"$S(q)$")
+ax.set_xlabel(r"$q$ (Å$^{-1}$)")
+ax.legend()
+jf.save(fig, "fig_structure_factor")                 # writes .pdf + .svg + .png
 ```
 
 ---
 
-**Requirements:** Python ≥ 3.11 | **License:** BSD 3-Clause
+**Requirements:** Python ≥ 3.12, matplotlib ≥ 3.8 | **License:** MIT
