@@ -31,11 +31,11 @@ My research sits at the intersection of materials science and physics. I use ato
     </div>
   </div>
   <div class="software-card">
-    <div class="software-card__icon">⚛️</div>
+    <div class="software-card__icon">📊</div>
     <div class="software-card__body">
-      <a class="software-card__title" href="https://github.com/Atilaac/atomex">atomex</a>
-      <p class="software-card__desc">Python package for analysis of MD simulations — structure, vibrational properties, clustering, and ring statistics.</p>
-      <a class="software-card__link" href="https://github.com/Atilaac/atomex">GitHub →</a>
+      <a class="software-card__title" href="https://github.com/Atilaac/journalfig">journalfig</a>
+      <p class="software-card__desc">Publication-ready matplotlib themes for twelve scientific publishers — exact column widths, compliant fonts, and one string to retarget a figure.</p>
+      <a class="software-card__link" href="https://github.com/Atilaac/journalfig">GitHub →</a>
     </div>
   </div>
 </div>
