@@ -1,0 +1,9 @@
+{% if include.bibtex %}
+<details class="pub-bibtex">
+  <summary><i class="fas fa-quote-right"></i> Cite (BibTeX)</summary>
+  <div class="pub-bibtex__body">
+    <button type="button" class="btn btn--inverse pub-bibtex__copy"><i class="fas fa-copy"></i> Copy</button>
+    <pre><code>{{ include.bibtex | strip | escape }}</code></pre>
+  </div>
+</details>
+{% endif %}

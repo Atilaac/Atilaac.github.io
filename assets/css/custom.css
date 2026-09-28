@@ -248,6 +248,37 @@ html[data-theme="dark"] .pub-lay-summary {
   border-left-color: var(--accent);
 }
 
+.pub-bibtex {
+  margin: 0.65rem 0;
+  font-size: 0.82rem;
+}
+.pub-bibtex summary {
+  cursor: pointer;
+  color: var(--text-secondary);
+  font-weight: 500;
+}
+.pub-bibtex__body {
+  position: relative;
+  margin-top: 0.5rem;
+}
+.pub-bibtex__copy {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+  cursor: pointer;
+}
+.pub-bibtex pre {
+  background: var(--bg-secondary);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: 0.85rem 1.1rem;
+  margin: 0;
+  overflow-x: auto;
+  font-size: 0.75rem;
+  line-height: 1.5;
+  white-space: pre;
+}
+
 /* ----------------------------------------------------------
    7. SIDEBAR
    ---------------------------------------------------------- */

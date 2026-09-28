@@ -67,6 +67,7 @@
       {% if post.bibtexurl %}<a href="{{ post.bibtexurl }}" class="btn btn--inverse"><i class="fas fa-quote-right"></i> BibTeX</a>{% endif %}
       {% if post.pdf_local %}<a href="{{ post.pdf_local }}" class="btn btn--primary"><i class="fas fa-file-pdf"></i> PDF</a>{% endif %}
     </div>
+    {% include pub-bibtex.html bibtex=post.bibtex %}
 
     {% if post.lay_summary_en or post.lay_summary or post.lay_summary_ar or post.lay_summary_fr or post.lay_summary_de %}
       <details>

@@ -1,3 +1,14 @@
 <script src="{{ base_path }}/assets/js/main.min.js"></script>
+<script>
+  document.addEventListener("click", function (event) {
+    var button = event.target.closest(".pub-bibtex__copy");
+    if (!button) return;
+    var text = button.parentNode.querySelector("code").textContent;
+    navigator.clipboard.writeText(text).then(function () {
+      button.innerHTML = '<i class="fas fa-check"></i> Copied';
+      setTimeout(function () { button.innerHTML = '<i class="fas fa-copy"></i> Copy'; }, 1500);
+    });
+  });
+</script>
 
 {% include analytics.html %}

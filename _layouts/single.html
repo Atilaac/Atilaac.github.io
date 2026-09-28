@@ -60,6 +60,7 @@ layout: default
           {% if page.bibtexurl %}<a href="{{ page.bibtexurl }}" class="btn btn--inverse"><i class="fas fa-quote-right"></i> BibTeX</a>{% endif %}
           {% if page.pdf_local %}<a href="{{ page.pdf_local }}" class="btn btn--primary"><i class="fas fa-file-pdf"></i> PDF</a>{% endif %}
         </div>
+        {% include pub-bibtex.html bibtex=page.bibtex %}
 
         {% if page.lay_summary_en or page.lay_summary or page.lay_summary_ar or page.lay_summary_fr or page.lay_summary_de %}
           <h2>Plain Language Summary</h2>
