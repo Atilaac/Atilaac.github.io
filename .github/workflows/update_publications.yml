@@ -28,6 +28,10 @@ jobs:
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
+          if git diff --quiet -- _data/scholar_metrics.yml; then
+            echo "Metrics unchanged, no pull request needed"
+            exit 0
+          fi
           branch="citation-metrics-$(date +%Y-%m)"
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
