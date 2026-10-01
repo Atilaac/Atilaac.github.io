@@ -1,4 +1,4 @@
-name: Update Google Scholar Data
+name: Update Citation Metrics
 
 on:
   schedule:
@@ -6,7 +6,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  fetch-scholar-data:
+  fetch-citation-metrics:
     runs-on: ubuntu-latest
 
     steps:
@@ -18,34 +18,13 @@ jobs:
         with:
           python-version: '3.11'
 
-      - name: Install dependencies
-        run: pip install scholarly anthropic python-dotenv pyyaml jsonpickle
-
-      - name: Fetch Scholar data and metrics
-        env:
-          GOOGLE_SCHOLAR_ID: ${{ secrets.GOOGLE_SCHOLAR_ID }}
-        run: |
-          cd google_scholar_crawler
-          python main.py
-          python - <<'EOF'
-          import json, yaml, datetime
-          with open("results/gs_data.json") as f:
-              author = json.load(f)
-          metrics = {
-              "citations": author["citedby"],
-              "h_index": author["hindex"],
-              "i10_index": author["i10index"],
-              "last_updated": datetime.date.today().isoformat(),
-          }
-          with open("../_data/scholar_metrics.yml", "w") as f:
-              yaml.dump(metrics, f, default_flow_style=False)
-          print(metrics)
-          EOF
+      - name: Fetch citation metrics from OpenAlex
+        run: python scripts/update_citation_metrics.py
 
       - name: Commit and push changes
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add _publications/ google_scholar_crawler/results/ _data/scholar_metrics.yml
-          git commit -m "Update publications and Scholar metrics [skip ci]" || echo "No changes to commit"
+          git add _data/scholar_metrics.yml
+          git commit -m "Update citation metrics [skip ci]" || echo "No changes to commit"
           git push

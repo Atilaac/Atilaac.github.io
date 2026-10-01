@@ -11,10 +11,10 @@ author_profile: true
 
 {% if site.data.scholar_metrics %}
 <div class="scholar-metrics">
-  <div><i class="ai ai-google-scholar ai-fw" aria-hidden="true"></i> <strong>{{ site.data.scholar_metrics.citations }}</strong> citations</div>
+  <div><i class="fas fa-quote-right fa-fw" aria-hidden="true"></i> <strong>{{ site.data.scholar_metrics.citations }}</strong> citations</div>
   <div><i class="fas fa-chart-bar" aria-hidden="true"></i> h-index: <strong>{{ site.data.scholar_metrics.h_index }}</strong></div>
   <div><i class="fas fa-chart-line" aria-hidden="true"></i> i10-index: <strong>{{ site.data.scholar_metrics.i10_index }}</strong></div>
-  <span class="metrics-updated">updated {{ site.data.scholar_metrics.last_updated }}</span>
+  <span class="metrics-updated">via <a href="https://openalex.org/A5025247836">OpenAlex</a>, updated {{ site.data.scholar_metrics.last_updated }}</span>
 </div>
 {% endif %}
 
