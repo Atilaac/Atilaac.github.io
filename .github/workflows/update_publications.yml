@@ -8,6 +8,9 @@ on:
 jobs:
   fetch-citation-metrics:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
 
     steps:
       - name: Checkout repository
@@ -21,10 +24,18 @@ jobs:
       - name: Fetch citation metrics from Google Scholar
         run: python scripts/update_citation_metrics.py
 
-      - name: Commit and push changes
+      - name: Open pull request
+        env:
+          GH_TOKEN: ${{ github.token }}
         run: |
+          branch="citation-metrics-$(date +%Y-%m)"
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
+          git checkout -b "$branch"
           git add _data/scholar_metrics.yml
-          git commit -m "Update citation metrics [skip ci]" || echo "No changes to commit"
-          git push
+          git commit -m "Update citation metrics"
+          git push --force origin "$branch"
+          gh pr create --repo "${{ github.repository }}" --base master --head "$branch" \
+            --title "Update citation metrics ($(date +%Y-%m))" \
+            --body "Monthly Google Scholar metrics update: $(tr '\n' ' ' < _data/scholar_metrics.yml)" \
+            || echo "Pull request already open for $branch"
