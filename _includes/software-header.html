@@ -1,0 +1,16 @@
+<div class="software-header">
+  {% if page.logo %}
+  <div class="software-header__logo">
+    <img class="logo-light" src="{{ page.logo }}" alt="{{ page.title }} logo">
+    <img class="logo-dark" src="{{ page.logo_dark | default: page.logo }}" alt="" aria-hidden="true">
+  </div>
+  {% endif %}
+  <div class="software-header__body">
+    <p class="software-header__desc">{{ page.excerpt | strip_html | strip }}</p>
+    <div class="pub-links">
+      {% if page.github %}<a href="{{ page.github }}" class="btn btn--inverse"><i class="fab fa-github" aria-hidden="true"></i> GitHub</a>{% endif %}
+      {% if page.docs %}<a href="{{ page.docs }}" class="btn btn--inverse"><i class="fas fa-book" aria-hidden="true"></i> Docs</a>{% endif %}
+      {% if page.doi %}<a href="https://doi.org/{{ page.doi }}" class="btn btn--inverse"><i class="ai ai-doi" aria-hidden="true"></i> DOI</a>{% endif %}
+    </div>
+  </div>
+</div>

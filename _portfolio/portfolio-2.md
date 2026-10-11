@@ -5,7 +5,11 @@ collection: portfolio
 icon: chart-column
 github: https://github.com/Atilaac/journalfig
 docs: https://aatila.com/journalfig/
+logo: /images/software/journalfig-logo.svg
+logo_dark: /images/software/journalfig-logo-dark.svg
 ---
+
+{% include software-header.html %}
 
 **journalfig** is an open-source matplotlib theme package for **Nature**, **APS** (PRB/PRL), **Elsevier** (Acta Materialia, JNCS), **IOP**, **AIP**, **ACS**, **RSC**, **IEEE**, **PLOS**, **Wiley**, **PNAS**, and **Science**. Import once, then retarget a figure to a different journal by changing one string. Every number in the themes is traceable to a publisher document, with the six derived values marked as such.
 
