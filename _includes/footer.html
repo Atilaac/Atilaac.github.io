@@ -1,5 +1,14 @@
 {% include base_path %}
 
+{% assign author = site.author %}
+<div class="page__footer-links">
+  {% if author.uri %}<a href="{{ author.uri }}"><i class="fas fa-graduation-cap" aria-hidden="true"></i> achrafatila.com</a>{% endif %}
+  {% if author.paperverdict %}<a href="{{ author.paperverdict }}"><i class="fas fa-magnifying-glass" aria-hidden="true"></i> PaperVerdict</a>{% endif %}
+  {% if author.arxiv %}<a href="{{ author.arxiv }}"><i class="ai ai-arxiv" aria-hidden="true"></i> arXiv</a>{% endif %}
+  {% if author.researchgate %}<a href="{{ author.researchgate }}"><i class="fab fa-researchgate" aria-hidden="true"></i> ResearchGate</a>{% endif %}
+  {% if author.scopus %}<a href="{{ author.scopus }}"><i class="ai ai-scopus" aria-hidden="true"></i> Scopus</a>{% endif %}
+  {% if author.instagram %}<a href="https://instagram.com/{{ author.instagram }}"><i class="fab fa-instagram" aria-hidden="true"></i> Instagram</a>{% endif %}
+</div>
 
 <div class="page__footer-copyright">
   &copy; {{ site.time | date: '%Y' }} {{ site.name | default: site.title }}, {{ site.data.ui-text[site.locale].powered_by | default: "Powered by" }} <a href="http://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://github.com/academicpages/academicpages.github.io">AcademicPages</a>, a fork of <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.<br />

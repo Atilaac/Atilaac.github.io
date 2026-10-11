@@ -60,7 +60,7 @@
 
     <div class="pub-links">
       {% if post.citation %}
-        <span style="font-size:0.8rem;color:var(--text-muted);width:100%;margin-bottom:0.2rem;">{{ post.citation | replace: "Achraf Atila", "<strong><u>Achraf Atila</u></strong>" }}</span>
+        <span class="pub-citation">{{ post.citation | replace: "Achraf Atila", "<strong><u>Achraf Atila</u></strong>" }}</span>
       {% endif %}
       {% if post.paperurl %}<a href="{{ post.paperurl }}" class="btn btn--inverse"><i class="fas fa-external-link-alt"></i> Paper</a>{% endif %}
       {% if post.slidesurl %}<a href="{{ post.slidesurl }}" class="btn btn--inverse"><i class="fas fa-file-powerpoint"></i> Slides</a>{% endif %}

@@ -43,8 +43,8 @@ Work experience
   
 Software
 ======
-* [**atomex**](https://github.com/Atilaac/atomex) — Python package for analyzing atomistic simulation and experimental data. Features include radial distribution functions, vibrational density of states, ring statistics, persistent homology, and coordination analysis. Sole developer and maintainer. `pip install atomex`
-* [**amorphouspy**](https://github.com/glasagent/amorphouspy) — End-to-end workflows for computational glass science, covering structure generation, melt-quench simulations with LAMMPS, and property calculation (elastic moduli, viscosity, CTE). Lead developer; collaboration with BAM, Schott AG, and MPIE.
+* [**amorphouspy**](https://github.com/glasagent/amorphouspy) — End-to-end workflows for computational glass science, covering structure generation, melt-quench simulations with LAMMPS, and property calculation (elastic moduli, viscosity, CTE). Lead developer; collaboration with BAM, Schott AG, and MPI-SusMat.
+* [**journalfig**](https://github.com/Atilaac/journalfig) — Publication-ready matplotlib themes for twelve scientific publishers, with exact column widths, compliant fonts, and one string to retarget a figure. Sole developer and maintainer. `pip install journalfig`
 
 Publications
 ======

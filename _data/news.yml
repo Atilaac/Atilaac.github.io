@@ -1,0 +1,26 @@
+# Dated updates shown on the home page, newest first.
+# Fields: date (YYYY-MM-DD), text (HTML allowed), url (optional)
+
+- date: 2026-08-24
+  text: 'Published in <i>Advanced Engineering Materials</i>: "Supporting AI Readiness through Digital Workflows in Materials Science"'
+  url: /publication/pub-032
+
+- date: 2026-07-16
+  text: 'New preprint submitted: "From compressed- to stretched-exponential dynamics in metallic glass"'
+  url: /publication/pub-034
+
+- date: 2026-06-29
+  text: 'Published in <i>Physical Review Materials</i>: "Icosahedral short-range order suppresses thermal expansion in metallic glasses"'
+  url: /publication/pub-030
+
+- date: 2026-04-13
+  text: 'Talk at the International Congress on Glass (ICG) 2026 in Lyon: "Atomistic simulations of glasses made FAIR"'
+  url: /talks/2026-04-13-talk-4
+
+- date: 2025-12-08
+  text: '<i>Quanta Magazine</i> covers our ice-friction work: "Why Is Ice Slippery? A New Hypothesis Slides Into the Chat."'
+  url: https://www.quantamagazine.org/why-is-ice-slippery-a-new-hypothesis-slides-into-the-chat-20251208
+
+- date: 2025-08-07
+  text: 'Published in <i>Physical Review Letters</i>: "Cold self-lubrication of sliding ice"'
+  url: /publication/pub-011
