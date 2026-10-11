@@ -35,8 +35,11 @@
     {% if post.read_time %}
       <p class="page__meta"><i class="fa fa-clock" aria-hidden="true"></i> {% include read-time.html %}</p>
     {% endif %}
-    {% if post.date %}<p class="page__meta"><i class="fa fa-clock" aria-hidden="true"></i> {{ post.date | date: '%B %d, %Y' }}</p>{% endif %}
-    {% if post.venue %}<p class="archive__item-excerpt" itemprop="description">{{post.type}}, {{ post.venue }},  {{post.location}} {% endif %}
-    {% if post.excerpt %}<p class="archive__item-excerpt" itemprop="description">{{ post.excerpt | markdownify }}</p>{% endif %}
+    <p class="pub-meta talk-meta">
+      {% if post.type %}<span class="talk-meta__type">{{ post.type }}</span> · {% endif %}{% if post.date %}<time datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: '%B %Y' }}</time>{% endif %}{% if post.location %} · {{ post.location }}{% endif %}
+    </p>
+    {% if post.venue %}<p class="talk-venue">{{ post.venue }}</p>{% endif %}
+    {% if post.excerpt %}<div class="archive__item-excerpt" itemprop="description">{{ post.excerpt | markdownify }}</div>{% endif %}
+    {% if post.slidesurl %}<div class="pub-links"><a href="{{ post.slidesurl }}" class="btn btn--inverse"><i class="fas fa-file-powerpoint" aria-hidden="true"></i> Slides</a></div>{% endif %}
   </article>
 </div>

@@ -1,0 +1,22 @@
+{%- comment -%}
+  Prints the author list taken from a citation string of the form
+  `Name A, Name B, ... "Title." <i>Venue</i> ...`. Lists longer than
+  eight names are shortened to the first three, Achraf Atila, and the last author.
+{%- endcomment -%}
+{%- if include.citation contains '. "' -%}
+  {%- assign pa_names = include.citation | split: '. "' | first | split: ", " -%}
+  {%- assign pa_count = pa_names | size -%}
+  {%- if pa_count > 8 -%}
+    {%- assign pa_last = pa_count | minus: 1 -%}
+    {%- assign pa_me = -1 -%}
+    {%- for pa_name in pa_names -%}{%- if pa_name == "Achraf Atila" -%}{%- assign pa_me = forloop.index0 -%}{%- endif -%}{%- endfor -%}
+    {%- capture pa_text -%}
+      {%- for pa_name in pa_names limit: 3 -%}{{ pa_name }}, {% endfor -%}
+      …{%- if pa_me > 2 and pa_me < pa_last -%}, Achraf Atila, …{%- endif -%}, {{ pa_names.last }}
+      <span class="pub-authors__count">({{ pa_count }} authors)</span>
+    {%- endcapture -%}
+  {%- else -%}
+    {%- assign pa_text = pa_names | join: ", " -%}
+  {%- endif -%}
+  <p class="pub-authors">{{ pa_text | replace: "Achraf Atila", '<strong class="pub-me">Achraf Atila</strong>' }}</p>
+{%- endif -%}

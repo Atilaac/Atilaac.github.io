@@ -9,6 +9,34 @@
       setTimeout(function () { button.innerHTML = '<i class="fas fa-copy"></i> Copy'; }, 1500);
     });
   });
+
+  document.addEventListener("click", function (event) {
+    var button = event.target.closest(".pub-toggle");
+    if (!button) return;
+    var panel = document.getElementById(button.getAttribute("aria-controls"));
+    var open = button.getAttribute("aria-expanded") === "true";
+    button.setAttribute("aria-expanded", String(!open));
+    panel.hidden = open;
+  });
+
+  (function () {
+    var input = document.getElementById("pub-filter");
+    if (!input) return;
+    var empty = document.querySelector(".pub-filter__empty");
+    input.addEventListener("input", function () {
+      var query = input.value.trim().toLowerCase();
+      var anyVisible = false;
+      document.querySelectorAll(".pub-entry").forEach(function (entry) {
+        entry.hidden = query !== "" && entry.dataset.search.indexOf(query) === -1;
+      });
+      document.querySelectorAll(".pub-year-group, .pub-section").forEach(function (group) {
+        group.hidden = !group.querySelector(".pub-entry:not([hidden])");
+        if (!group.hidden) anyVisible = true;
+      });
+      document.querySelectorAll(".pub-shortcuts").forEach(function (nav) { nav.hidden = query !== ""; });
+      empty.hidden = anyVisible;
+    });
+  })();
 </script>
 
 {% include analytics.html %}

@@ -2,6 +2,10 @@
 title: "amorphouspy"
 excerpt: "End-to-end workflows for computational glass science — structure generation, melt-quench simulations, property calculation, structural analysis, and a job API that exposes the whole pipeline to LLM agents."
 collection: portfolio
+icon: flask
+github: https://github.com/glasagent/amorphouspy
+docs: https://glasagent.github.io/amorphouspy/
+doi: 10.5281/zenodo.19553302
 ---
 
 **amorphouspy** is an open-source Python framework for atomistic simulations of oxide glasses. It covers the full pipeline from generating initial structural models, through running molecular dynamics with LAMMPS, to computing material properties and performing detailed structural analysis. A companion package, `amorphouspy_api`, strings those functions into end-to-end workflows with [executorlib](https://executorlib.readthedocs.io/) and exposes them as web endpoints — including an MCP server, so an LLM-powered agent can drive the simulations directly.

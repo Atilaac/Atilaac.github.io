@@ -25,9 +25,9 @@ author:
   avatar           : "Me.jpg"
   name             : "Dr. Achraf Atila"
   pronouns         : # example: "she/her"  
-  bio              : "I am a computational material scientist"
+  bio              : "Computational materials scientist studying glasses with atomistic simulations"
   location         : "Berlin, Germany"
-  employer         : "Bundesanstalt für materialforschung und prüfung BAM"
+  employer         : "Bundesanstalt für Materialforschung und -prüfung (BAM)"
   uri              : "https://achrafatila.com"
   paperverdict     : "https://paperverdict.com"
   email            : "dr.achrafatila@gmail.com" 
@@ -64,7 +64,7 @@ teaser                   :  # filename of teaser fallback teaser image placed in
 breadcrumbs              : false # true, false (default)
 words_per_minute         : 100
 future                   : true
-read_more                : "enable" # if enabled, adds "Read more" links to excerpts
+read_more                : "disabled" # "enabled", adds "Read more" links to excerpts
 talkmap_link             : false      #change to true to add link to talkmap on talks page
 comments:
   provider               : # false (default), "disqus", "discourse", "facebook", "google-plus", "staticman", "custom"

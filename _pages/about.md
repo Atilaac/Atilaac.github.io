@@ -1,12 +1,24 @@
 ---
 permalink: /
-title: "About Me"
 author_profile: true
 redirect_from: 
   - /about/
   - /about.html
 ---
-I am Dr. Achraf Atila. I work at the Bundesanstalt für Materialforschung und -prüfung (BAM) in Berlin on atomistic simulations of inorganic glasses. I am a computational material scientist focusing on amorphous materials, strongly interested in the relationship between composition and physical properties of glasses and in building the simulation workflows that make that science possible.
+
+<section class="hero">
+  <div class="hero__text">
+    <p class="hero__eyebrow">Computational materials scientist · BAM, Berlin</p>
+    <h1 class="hero__title">I use atomistic simulations to understand how glasses form, deform, and fail.</h1>
+    <p class="hero__lead">I am Dr. Achraf Atila. I work at the Bundesanstalt für Materialforschung und -prüfung (BAM) in Berlin on atomistic simulations of inorganic glasses. My research sits at the intersection of materials science and physics: I am strongly interested in the relationship between composition and physical properties of glasses, from the atomic scale up to macroscopic properties, and in building the simulation workflows that make that science possible.</p>
+    <div class="hero__actions">
+      <a class="btn btn--primary" href="/cv/"><i class="fas fa-file-lines" aria-hidden="true"></i> CV</a>
+      <a class="btn btn--inverse" href="{{ site.author.googlescholar }}"><i class="ai ai-google-scholar" aria-hidden="true"></i> Google Scholar</a>
+      <a class="btn btn--inverse" href="mailto:{{ site.author.email }}"><i class="fas fa-envelope" aria-hidden="true"></i> Email</a>
+    </div>
+  </div>
+  <div class="hero__visual">{% include hero-network.svg %}</div>
+</section>
 
 <div class="research-tags">
   <span class="tag">Amorphous materials</span>
@@ -17,32 +29,31 @@ I am Dr. Achraf Atila. I work at the Bundesanstalt für Materialforschung und -p
   <span class="tag">Open-source workflows</span>
 </div>
 
-My research sits at the intersection of materials science and physics. I use atomistic simulations and data analysis to study how glasses form, deform, and fail, from the atomic scale up to macroscopic properties.
+## News
+
+<ul class="news-list">
+{% for item in site.data.news limit: 6 %}<li class="news-list__item"><time class="news-list__date" datetime="{{ item.date | date_to_xmlschema }}">{{ item.date | date: "%b %Y" }}</time><span class="news-list__text">{% if item.url %}<a href="{{ item.url }}">{{ item.text }}</a>{% else %}{{ item.text }}{% endif %}</span></li>
+{% endfor %}</ul>
+
+## Selected Publications
+
+{% assign featured_pubs = site.publications | where_exp: "pub", "pub.featured" | sort: "featured" %}
+<div class="featured-pubs">
+{% for post in featured_pubs %}<a class="featured-pub" href="{{ post.url }}"><span class="featured-pub__venue">{% if post.venue == "Submitted" %}Under review{% else %}<i>{{ post.venue }}</i>{% endif %} · {{ post.date | date: "%Y" }}</span><span class="featured-pub__title">{{ post.title }}</span></a>
+{% endfor %}</div>
+
+All papers, preprints and citation metrics are on the [Publications](/publications/) page.
+
 
 ## Open-Source Software
 
 <div class="software-cards">
-  <div class="software-card">
-    <div class="software-card__icon">🧪</div>
-    <div class="software-card__body">
-      <a class="software-card__title" href="https://github.com/glasagent/amorphouspy">amorphouspy</a>
-      <p class="software-card__desc">End-to-end computational glass science framework — melt-quench workflows, property calculation, FastAPI backend. Developed with Schott AG and MPI for Sustainable Materials.</p>
-      <a class="software-card__link" href="https://github.com/glasagent/amorphouspy">GitHub →</a>
-    </div>
-  </div>
-  <div class="software-card">
-    <div class="software-card__icon">📊</div>
-    <div class="software-card__body">
-      <a class="software-card__title" href="https://github.com/Atilaac/journalfig">journalfig</a>
-      <p class="software-card__desc">Publication-ready matplotlib themes for twelve scientific publishers — exact column widths, compliant fonts, and one string to retarget a figure.</p>
-      <a class="software-card__link" href="https://github.com/Atilaac/journalfig">GitHub →</a>
-    </div>
-  </div>
+{% for post in site.portfolio %}{% include software-card.html %}{% endfor %}
 </div>
 
 More details on the [Software](/portfolio/) page. You can also browse my [GitHub](https://github.com/Atilaac) and [Google Scholar](https://scholar.google.com/citations?user=TTAujLUAAAAJ&hl=en) profiles.
 
-## In the News
+## In the Press
 
 Our recent paper in [Physical Review Letters](https://journals.aps.org/prl/abstract/10.1103/1plj-7p4z) on the slipperiness of ice attracted broad media coverage:
 

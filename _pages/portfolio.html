@@ -8,7 +8,9 @@ author_profile: true
 {% include base_path %}
 
 
+<div class="software-cards software-cards--page">
 {% for post in site.portfolio %}
-  {% include archive-single.html %}
+  {% include software-card.html %}
 {% endfor %}
+</div>
 

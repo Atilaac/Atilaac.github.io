@@ -1,0 +1,56 @@
+{% include base_path %}
+
+{% assign title = post.title | markdownify | remove: "<p>" | remove: "</p>" | strip %}
+{% assign pub_id = post.path | split: "/" | last | remove: ".md" | prepend: include.idp %}
+{% assign pub_year = post.date | default: "1900-01-01" | date: "%Y" %}
+
+<article class="archive__item pub-card" itemscope itemtype="http://schema.org/ScholarlyArticle">
+  <h2 class="archive__item-title" itemprop="headline">
+    {% if include.number %}<span class="pub-number">[{{ include.number }}]</span>{% endif %}
+    <a href="{{ base_path }}{{ post.url }}" rel="permalink">{{ title }}</a>
+    {% if post.venue == "Submitted" %}<span class="badge badge--submitted">Under review</span>{% endif %}
+    {% if post.corresponding == true %}<span class="corresponding-badge" title="Corresponding author" aria-label="Corresponding author"><i class="fas fa-envelope" aria-hidden="true"></i></span>{% endif %}
+  </h2>
+
+  <p class="pub-meta">
+    {% if post.venue == "Submitted" %}Submitted {{ post.date | date: "%B %Y" }}{% else %}<i>{{ post.venue }}</i> · {{ pub_year }}{% endif %}
+  </p>
+
+  {% include pub-authors.html citation=post.citation %}
+
+  {% assign excerpt_text = post.excerpt | strip_html | strip %}
+  {% assign title_text = post.title | strip_html | strip %}
+  {% if excerpt_text != "" and excerpt_text != title_text %}
+    <p class="archive__item-excerpt" itemprop="description">{{ excerpt_text }}</p>
+  {% endif %}
+
+  {% assign has_summary = false %}
+  {% if post.lay_summary_en or post.lay_summary or post.lay_summary_ar or post.lay_summary_fr or post.lay_summary_de %}{% assign has_summary = true %}{% endif %}
+
+  <div class="pub-links">
+    {% if post.paperurl %}<a href="{{ post.paperurl }}" class="btn btn--inverse"><i class="fas fa-external-link-alt" aria-hidden="true"></i> Paper</a>{% endif %}
+    {% if post.pdf_local %}<a href="{{ post.pdf_local }}" class="btn btn--primary"><i class="fas fa-file-pdf" aria-hidden="true"></i> PDF</a>{% endif %}
+    {% if post.slidesurl %}<a href="{{ post.slidesurl }}" class="btn btn--inverse"><i class="fas fa-file-powerpoint" aria-hidden="true"></i> Slides</a>{% endif %}
+    {% if post.bibtexurl %}<a href="{{ post.bibtexurl }}" class="btn btn--inverse"><i class="fas fa-quote-right" aria-hidden="true"></i> BibTeX</a>{% endif %}
+    {% if post.bibtex %}<button type="button" class="btn btn--inverse pub-toggle" aria-expanded="false" aria-controls="{{ pub_id }}-cite"><i class="fas fa-quote-right" aria-hidden="true"></i> Cite</button>{% endif %}
+    {% if has_summary %}<button type="button" class="btn btn--inverse pub-toggle" aria-expanded="false" aria-controls="{{ pub_id }}-summary"><i class="fas fa-book-open" aria-hidden="true"></i> Plain-language summary</button>{% endif %}
+  </div>
+
+  {% if post.bibtex %}
+  <div class="pub-panel pub-bibtex" id="{{ pub_id }}-cite" hidden>
+    <div class="pub-bibtex__body">
+      <button type="button" class="btn btn--inverse pub-bibtex__copy"><i class="fas fa-copy"></i> Copy</button>
+      <pre><code>{{ post.bibtex | strip | escape }}</code></pre>
+    </div>
+  </div>
+  {% endif %}
+
+  {% if has_summary %}
+  <div class="pub-panel" id="{{ pub_id }}-summary" hidden>
+    {% if post.lay_summary_en %}<div class="pub-lay-summary"><p lang="en"><strong>🇬🇧 English</strong><br>{{ post.lay_summary_en }}</p></div>{% elsif post.lay_summary %}<div class="pub-lay-summary"><p>{{ post.lay_summary }}</p></div>{% endif %}
+    {% if post.lay_summary_ar %}<div class="pub-lay-summary"><p lang="ar" dir="rtl" style="text-align:right;font-family:serif;"><strong>🇲🇦 العربية</strong><br>{{ post.lay_summary_ar }}</p></div>{% endif %}
+    {% if post.lay_summary_fr %}<div class="pub-lay-summary"><p lang="fr"><strong>🇫🇷 Français</strong><br>{{ post.lay_summary_fr }}</p></div>{% endif %}
+    {% if post.lay_summary_de %}<div class="pub-lay-summary"><p lang="de"><strong>🇩🇪 Deutsch</strong><br>{{ post.lay_summary_de }}</p></div>{% endif %}
+  </div>
+  {% endif %}
+</article>

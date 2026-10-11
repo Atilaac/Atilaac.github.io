@@ -20,12 +20,21 @@ author_profile: true
 
 {% include base_path %}
 
+<p class="pub-legend"><span class="corresponding-badge" aria-hidden="true"><i class="fas fa-envelope"></i></span> corresponding author</p>
+
+<div class="pub-filter">
+  <i class="fas fa-search" aria-hidden="true"></i>
+  <input type="search" id="pub-filter" placeholder="Filter by title, author, journal or year" aria-label="Filter publications" autocomplete="off">
+</div>
+<p class="pub-filter__empty" hidden>No publications match this filter.</p>
+
 <!-- New style rendering if publication categories are defined -->
 {% if site.publication_category %}
   {% for category in site.publication_category %}
     {% assign cat_posts = site.publications | where: "category", category[0] | sort: "date" %}
     {% assign cat_total = cat_posts | size %}
     {% if cat_total == 0 %}{% continue %}{% endif %}
+    {% assign show_years = false %}{% if cat_total > 6 %}{% assign show_years = true %}{% endif %}
     {% comment %} Quick-jump shortcuts to the other (non-empty) sections {% endcomment %}
     {% capture jump_links %}
       {% for other in site.publication_category %}
@@ -35,27 +44,35 @@ author_profile: true
         {% endif %}
       {% endfor %}
     {% endcapture %}
+    <section class="pub-section">
     {% if jump_links contains "pub-shortcut" %}
     <nav class="pub-shortcuts" aria-label="Jump to other publication sections">
       <span class="pub-shortcuts__label">Jump to:</span>{{ jump_links }}
     </nav>
     {% endif %}
     <div class="pub-category-heading" id="{{ category[0] | slugify }}"><h2>{{ category[1].title }}</h2></div>
+    {% assign prev_year = "" %}
     {% for post in cat_posts reversed %}
-      {% assign pub_number = forloop.rindex %}
-      <div style="display:flex;align-items:flex-start;gap:0.75rem;">
-        <span class="pub-number">[{{ pub_number }}]</span>
-        <div style="flex:1;">{% include archive-single.html %}</div>
+      {% assign cur_year = post.date | date: "%Y" %}
+      {% if cur_year != prev_year %}
+        {% unless forloop.first %}</div>{% endunless %}
+        <div class="pub-year-group">{% if show_years %}<h3 class="pub-year">{{ cur_year }}</h3>{% endif %}
+        {% assign prev_year = cur_year %}
+      {% endif %}
+      <div class="pub-entry" data-search="{{ post.title | append: ' ' | append: post.citation | append: ' ' | append: post.venue | append: ' ' | append: cur_year | strip_html | downcase | escape }}">
+        {% include archive-single-pub.html number=forloop.rindex idp="pub-" %}
       </div>
+      {% if forloop.last %}</div>{% endif %}
     {% endfor %}
+    </section>
   {% endfor %}
 {% else %}
   {% assign all_posts = site.publications | sort: "date" %}
+  <section class="pub-section"><div class="pub-year-group">
   {% for post in all_posts reversed %}
-    {% assign pub_number = forloop.rindex %}
-    <div style="display:flex;align-items:flex-start;gap:0.75rem;">
-      <span class="pub-number">[{{ pub_number }}]</span>
-      <div style="flex:1;">{% include archive-single.html %}</div>
+    <div class="pub-entry" data-search="{{ post.title | append: ' ' | append: post.citation | append: ' ' | append: post.venue | strip_html | downcase | escape }}">
+      {% include archive-single-pub.html number=forloop.rindex idp="pub-" %}
     </div>
   {% endfor %}
+  </div></section>
 {% endif %}
