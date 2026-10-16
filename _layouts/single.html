@@ -39,6 +39,8 @@ layout: default
         {% elsif page.venue and page.date %}
           {% if page.venue == "Submitted" %}
             <p><span class="badge badge--submitted">Under Review</span> Submitted {{ page.date | default: "1900-01-01" | date: "%B %Y" }}</p>
+          {% elsif page.status == "accepted" %}
+            <p><span class="badge badge--accepted">Accepted</span> Accepted in <i>{{ page.venue }}</i>, {{ page.date | default: "1900-01-01" | date: "%B %Y" }}</p>
           {% else %}
             <p>Published in <i>{{ page.venue }}</i>, {{ page.date | default: "1900-01-01" | date: "%Y" }}</p>
           {% endif %}

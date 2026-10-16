@@ -27,7 +27,7 @@
     {% endif %}
 
     <h2 class="archive__item-title" itemprop="headline">
-      {% if post.venue == "Submitted" %}<span class="badge badge--submitted">Under Review</span>{% endif %}
+      {% if post.venue == "Submitted" %}<span class="badge badge--submitted">Under Review</span>{% elsif post.status == "accepted" %}<span class="badge badge--accepted">Accepted</span>{% endif %}
       {% if post.link %}
         <a href="{{ post.link }}">{{ title }}</a> <a href="{{ base_path }}{{ post.url }}" rel="permalink"><i class="fa fa-link" aria-hidden="true" title="permalink"></i><span class="sr-only">Permalink</span></a>
       {% else %}
@@ -45,6 +45,8 @@
         {% elsif post.collection == 'publications' %}
           {% if post.venue == "Submitted" %}
             <p>Under review &mdash; submitted {{ post.date | default: "1900-01-01" | date: "%B %Y" }}</p>
+          {% elsif post.status == "accepted" %}
+            <p>Accepted in <i>{{ post.venue }}</i>, {{ post.date | default: "1900-01-01" | date: "%B %Y" }}</p>
           {% else %}
             <p>Published in <i>{{ post.venue }}</i>, {{ post.date | default: "1900-01-01" | date: "%Y" }}</p>
           {% endif %}

@@ -8,12 +8,12 @@
   <h2 class="archive__item-title" itemprop="headline">
     {% if include.number %}<span class="pub-number">[{{ include.number }}]</span>{% endif %}
     <a href="{{ base_path }}{{ post.url }}" rel="permalink">{{ title }}</a>
-    {% if post.venue == "Submitted" %}<span class="badge badge--submitted">Under review</span>{% endif %}
+    {% if post.venue == "Submitted" %}<span class="badge badge--submitted">Under review</span>{% elsif post.status == "accepted" %}<span class="badge badge--accepted">Accepted</span>{% endif %}
     {% if post.corresponding == true %}<span class="corresponding-badge" title="Corresponding author" aria-label="Corresponding author"><i class="fas fa-envelope" aria-hidden="true"></i></span>{% endif %}
   </h2>
 
   <p class="pub-meta">
-    {% if post.venue == "Submitted" %}Submitted {{ post.date | date: "%B %Y" }}{% else %}<i>{{ post.venue }}</i> · {{ pub_year }}{% endif %}
+    {% if post.venue == "Submitted" %}Submitted {{ post.date | date: "%B %Y" }}{% elsif post.status == "accepted" %}Accepted in <i>{{ post.venue }}</i> · {{ post.date | date: "%B %Y" }}{% else %}<i>{{ post.venue }}</i> · {{ pub_year }}{% endif %}
   </p>
 
   {% include pub-authors.html citation=post.citation %}

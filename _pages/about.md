@@ -39,7 +39,7 @@ redirect_from:
 
 {% assign featured_pubs = site.publications | where_exp: "pub", "pub.featured" | sort: "featured" %}
 <div class="featured-pubs">
-{% for post in featured_pubs %}<a class="featured-pub" href="{{ post.url }}"><span class="featured-pub__venue">{% if post.venue == "Submitted" %}Under review{% else %}<i>{{ post.venue }}</i>{% endif %} · {{ post.date | date: "%Y" }}</span><span class="featured-pub__title">{{ post.title }}</span></a>
+{% for post in featured_pubs %}<a class="featured-pub" href="{{ post.url }}"><span class="featured-pub__venue">{% if post.venue == "Submitted" %}Under review{% elsif post.status == "accepted" %}Accepted · <i>{{ post.venue }}</i>{% else %}<i>{{ post.venue }}</i>{% endif %} · {{ post.date | date: "%Y" }}</span><span class="featured-pub__title">{{ post.title }}</span></a>
 {% endfor %}</div>
 
 All papers, preprints and citation metrics are on the [Publications](/publications/) page.
