@@ -1,6 +1,10 @@
 # Dated updates shown on the home page, newest first.
 # Fields: date (YYYY-MM-DD), text (HTML allowed), url (optional)
 
+- date: 2026-10-16
+  text: 'Accepted in <i>Physical Review B</i>: "From compressed- to stretched-exponential dynamics in metallic glass"'
+  url: /publication/pub-034
+
 - date: 2026-08-24
   text: 'Published in <i>Advanced Engineering Materials</i>: "Supporting AI Readiness through Digital Workflows in Materials Science"'
   url: /publication/pub-032
