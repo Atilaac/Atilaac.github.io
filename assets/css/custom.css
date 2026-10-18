@@ -258,6 +258,12 @@ html[data-theme="dark"] .pub-lay-summary {
   border-left-color: var(--accent);
 }
 
+.pub-contribution {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  margin: 0.35rem 0 0.5rem;
+}
+
 .pub-bibtex {
   margin: 0.65rem 0;
   font-size: 0.82rem;
