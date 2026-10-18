@@ -18,6 +18,8 @@
 
   {% include pub-authors.html citation=post.citation %}
 
+  {% if post.contribution %}<p class="pub-contribution"><strong>My role:</strong> {{ post.contribution }}</p>{% endif %}
+
   {% assign excerpt_text = post.excerpt | strip_html | strip %}
   {% assign title_text = post.title | strip_html | strip %}
   {% if excerpt_text != "" and excerpt_text != title_text %}
